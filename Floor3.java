@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Floor3 implements Floor{
@@ -39,6 +40,21 @@ public class Floor3 implements Floor{
 
     @Override
     public void display_reserved_spots() {
+
+    }
+
+    @Override
+    public Vehicle findVehicle(int slotno) {
+        return null;
+    }
+
+    @Override
+    public Date findDate(int slotno) {
+        return null;
+    }
+
+    @Override
+    public void clearSpots(int slotno) {
 
     }
 }
