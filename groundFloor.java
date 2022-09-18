@@ -43,4 +43,19 @@ public class groundFloor implements Floor{
     public void display_reserved_spots() {
 
     }
+
+    @Override
+    public Vehicle findVehicle(int slotno) {
+        return null;
+    }
+
+    @Override
+    public Date findDate(int slotno) {
+        return spots.get(slotno-1).getEntry();
+    }
+
+    @Override
+    public void clearSpots(int slotno) {
+        spots_available[slotno - 1] = 1;
+    }
 }
