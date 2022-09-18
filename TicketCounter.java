@@ -1,4 +1,7 @@
+import javax.swing.*;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class TicketCounter {
 
@@ -56,19 +59,80 @@ public class TicketCounter {
 
     protected void exit_vehicle(int slotno, int floorno){
         /** int t = get.this.time, now subtract this with the parking slot's time and calculte money
-         * and aslo free the slot, make the spots available array value in that pos as '1' &
+         * and also free the slot, make the spots available array value in that pos as '1' &
          * ask the payment method cash / card ( Select 1 or 2 respectively) and call the payment method()
          */
+        Date in;
+        if(floorno == 0){
+            in = g.findDate(slotno);
+        }
+        else if (floorno == 1){
+            in = f1.findDate(slotno);
+        }
+        else if (floorno == 2){
+            in = f2.findDate(slotno);
+        }
+        else if (floorno == 3){
+            in = f3.findDate(slotno);
+        }
+        else{
+            System.out.println("Enter Valid floor & Slot number");
+            return;
+        }
+        int amt = 0;
+        Date exit = new Date();
+        int hours = exit.getHours() - in.getHours();
+        int day = exit.getDay() - in.getDay();
+        int minutes = exit.getMinutes() - in.getMinutes();
+
+        if(day<0)day=day+7;
+        day=day*24;
+        if((hours+day)==1){
+            System.out.println((hours+day)*50);
+            amt=(hours+day)*50;
+        }
+        else if((hours+day)==2 || (hours+day)==3){
+            System.out.println((50+(hours+day-1)*30));
+            amt=50+(hours+day-1)*30;
+        }
+        else{
+            amt=(50+(2)*30)+(hours+day-3)*30;
+            System.out.println((amt));
+        }
+        payment(amt);
+        freeSpots(slotno, floorno);
     }
 
-    protected void payment(int t, int amt){
-        if( t== 1) {
-            //pays cash
+    protected void payment(int amt){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Please choose your payment method");
+        System.out.println("Enter 1 for Cash");
+        System.out.println("Enter 2 for Card");
+        int t = in.nextInt();
+        assert(t ==1 || t ==2);
+        if(t == 1){
+            System.out.println(amt + " has been received through cash");
         }
-        else if ( t== 2){
-            //mens card
+        else {
+            System.out.println("Enter Account number: " + in.nextInt());
+            System.out.println(amt + " has been credited");
         }
 
+    }
+
+    protected void freeSpots(int slotno, int floorno){
+        if(floorno == 0){
+            g.clearSpots(slotno);
+        }
+        else if (floorno == 1){
+            f1.clearSpots(slotno);
+        }
+        else if (floorno == 2){
+            f2.clearSpots(slotno);
+        }
+        else if (floorno == 3){
+            f3.clearSpots(slotno);
+        }
     }
 
 
