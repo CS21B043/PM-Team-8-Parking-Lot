@@ -1,6 +1,4 @@
-import javax.swing.*;
 import java.util.Date;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class TicketCounter {
@@ -194,34 +192,50 @@ public class TicketCounter {
         }
         payment(amt);
         freeSpots(slotno, floorno);
+        remove_vehicle(slotno, floorno);
     }
     
+    protected void remove_vehicle(int slotno, int floorno){
+        if(floorno == 0){
+            g.vehicle_exit(slotno);
+        }
+        else if (floorno == 1){
+            f1.vehicle_exit(slotno);   
+        }
+        else if(floorno == 2){
+            f2.vehicle_exit(slotno);
+        }
+        else if (floorno == 3){
+            f3.vehicle_exit(slotno);
+        }
+    }
+
     public void display_free_slots(){
         System.out.println("The slots available in the ground floor are : ");
         System.out.println(" General spots : ");
         g.slotsAvailable();
         System.out.println( " Reserved for Handicapped : ");
         g.display_reserved_spots();
-    
+
         System.out.println("The slots available in the first floor are : ");
         System.out.println(" General spots : ");
         f1.slotsAvailable();
         System.out.println( " Reserved for Handicapped : ");
         f1.display_reserved_spots();
-    
+
         System.out.println("The slots available in the second floor are : ");
         System.out.println(" General spots : ");
         f2.slotsAvailable();
         System.out.println( " Reserved for Handicapped : ");
         f2.display_reserved_spots();
-    
+
         System.out.println("The slots available in the third floor are : ");
         System.out.println(" General spots : ");
         f3.slotsAvailable();
         System.out.println( " Reserved for Handicapped : ");
         f3.display_reserved_spots();
     }
-    
+
     protected void freeSpots(int slotno, int floorno){
         if(floorno == 0){
             g.clearSpots(slotno);
