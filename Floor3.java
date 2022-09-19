@@ -51,12 +51,12 @@ public class Floor3 implements Floor{
 
     @Override
     public Date findDate(int slotno) {
-        return null;
+        return spots.get(slotno-1).getEntry();
     }
 
     @Override
     public void clearSpots(int slotno) {
-
+        spots_available[slotno - 1] = true;
     }
 
     @Override
