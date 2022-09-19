@@ -37,7 +37,6 @@ public class TicketCounter {
     protected void availableSpots(Vehicle v){
         int floor_no = findFloor(v);
         boolean is_handicapped = v.isHandicapped();
-        boolean b = v.isElectric();
         if(floor_no == 0){
 
             if(is_handicapped){
@@ -46,16 +45,16 @@ public class TicketCounter {
             g.slotsAvailable();
         }
         else if (floor_no == 2) {
-                if(is_handicapped){
-                    f2.display_reserved_spots();
-                }
-                f2.slotsAvailable();
+            if(is_handicapped){
+                f2.display_reserved_spots();
+            }
+            f2.slotsAvailable();
         }
         else if (floor_no == 1){
-                if(is_handicapped){
-                    f1.display_reserved_spots();
-                }
-                f1.slotsAvailable();
+            if(is_handicapped){
+                f1.display_reserved_spots();
+            }
+            f1.slotsAvailable();
 
         }
         else{
@@ -65,23 +64,27 @@ public class TicketCounter {
             f3.slotsAvailable();
         }
         Scanner in = new Scanner(System.in);
-        System.out.print("Choose one from any of these available spots: ");
+        System.out.println("\nChoose one from any of these available spots: ");
         int slot_no = in.nextInt();
         add_vehicle_toSpot(v,slot_no,floor_no);
     }
 
     protected void add_vehicle_toSpot(Vehicle v, int slotno, int floorno){
+        Date in = new Date();
+        ParkingSpot p = new ParkingSpot(slotno,floorno,v,in);
+        assert(floorno >=0 && floorno <4);
+
         if(floorno == 0){
-            g.add_vehicle(v,slotno);
+            g.add_vehicle(p);
         }
         else if (floorno == 1){
-            f1.add_vehicle(v,slotno);
+            f1.add_vehicle(p);
         }
         else if (floorno == 2){
-            f2.add_vehicle(v,slotno);
+            f2.add_vehicle(p);
         }
         else{
-            f3.add_vehicle(v,slotno);
+            f3.add_vehicle(p);
         }
     }
 
@@ -90,8 +93,7 @@ public class TicketCounter {
     }
     protected void pay_at_cip(int amt) {
         Scanner in = new Scanner(System.in);
-        String id;
-        String password;
+        String id,password;
         System.out.println("Welcome to the Customer's Info Portal");
         System.out.println("You can pay using NetBanking or UPI");
         print_menu("UPI", 1);
@@ -129,7 +131,7 @@ public class TicketCounter {
             System.out.println(amt + " has been credited");
         }
     }
-     protected void payment(int amt){
+    protected void payment(int amt){
         Scanner in = new Scanner(System.in);
         System.out.println("You can pay at the Customer's Info Portal or using an Automated Exit Panel or to the Parking Attendant");
         print_menu("Customer's Info Portal", 1);
@@ -148,8 +150,28 @@ public class TicketCounter {
         }
     }
 
+    protected int calculate_amt(Date in){
+        int amt;
+        Date exit = new Date();
+        int hours = exit.getHours() - in.getHours();
+        int day = exit.getDay() - in.getDay();
+
+        if(day<0)day=day+7;
+        day=day*24;
+        if((hours+day)==1){
+            amt=(hours+day)*50;
+        }
+        else if((hours+day)==2 || (hours+day)==3){
+            amt=50+(hours+day-1)*30;
+        }
+        else{
+            amt=(50+(2)*30)+(hours+day-3)*30;
+        }
+        return amt;
+    }
+
     protected void exit_vehicle(int slotno, int floorno){
-        /** int t = get.this.time, now subtract this with the parking slot's time and calculte money
+        /** int t = get.this.time, now subtract this with the parking slot's time and calculate money
          * and also free the slot, make the spots available array value in that pos as '1' &
          * ask the payment method cash / card ( Select 1 or 2 respectively) and call the payment method()
          */
@@ -170,37 +192,19 @@ public class TicketCounter {
             System.out.println("Enter Valid floor & Slot number");
             return;
         }
-        int amt = 0;
-        Date exit = new Date();
-        int hours = exit.getHours() - in.getHours();
-        int day = exit.getDay() - in.getDay();
-        int minutes = exit.getMinutes() - in.getMinutes();
-
-        if(day<0)day=day+7;
-        day=day*24;
-        if((hours+day)==1){
-            System.out.println((hours+day)*50);
-            amt=(hours+day)*50;
-        }
-        else if((hours+day)==2 || (hours+day)==3){
-            System.out.println((50+(hours+day-1)*30));
-            amt=50+(hours+day-1)*30;
-        }
-        else{
-            amt=(50+(2)*30)+(hours+day-3)*30;
-            System.out.println((amt));
-        }
+        int amt = calculate_amt(in);
+        System.out.println("You have to pay: " + amt);
         payment(amt);
         freeSpots(slotno, floorno);
         remove_vehicle(slotno, floorno);
     }
-    
+
     protected void remove_vehicle(int slotno, int floorno){
         if(floorno == 0){
             g.vehicle_exit(slotno);
         }
         else if (floorno == 1){
-            f1.vehicle_exit(slotno);   
+            f1.vehicle_exit(slotno);
         }
         else if(floorno == 2){
             f2.vehicle_exit(slotno);
