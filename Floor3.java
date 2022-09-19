@@ -12,7 +12,7 @@ public class Floor3 implements Floor{
     final int MAX_SPOTS = 400;
     boolean[] spots_available =new boolean[MAX_SPOTS];
 
-    private void farr(){
+    private void initialize_spots_available(){
         for(int i=0; i<MAX_SPOTS; ++i){
             spots_available[i] = true;
         }
@@ -56,6 +56,11 @@ public class Floor3 implements Floor{
 
     @Override
     public void clearSpots(int slotno) {
+
+    }
+
+    @Override
+    public void add_vehicle(Vehicle v,int slotno) {
 
     }
 }
