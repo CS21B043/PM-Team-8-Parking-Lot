@@ -18,7 +18,7 @@ public class Floor1 implements Floor{
         }
     }
     public Floor1() {
-
+        initialize_spots_available();
     }
 
     @Override
@@ -54,16 +54,21 @@ public class Floor1 implements Floor{
 
     @Override
     public Date findDate(int slotno) {
-        return spots.get(slotno-1).getEntry();
+        return null;
     }
 
     @Override
     public void clearSpots(int slotno) {
-        spots_available[slotno - 1] = true;
+
     }
 
     @Override
     public void add_vehicle(Vehicle v,int slotno) {
+
+    }
+
+    @Override
+    public void vehicle_exit(Vehicle v, int slotno) {
 
     }
 }
