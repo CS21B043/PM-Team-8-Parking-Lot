@@ -196,7 +196,32 @@ public class TicketCounter {
         freeSpots(slotno, floorno);
     }
     
-
+    public void display_free_slots(){
+        System.out.println("The slots available in the ground floor are : ");
+        System.out.println(" General spots : ");
+        g.slotsAvailable();
+        System.out.println( " Reserved for Handicapped : ");
+        g.display_reserved_spots();
+    
+        System.out.println("The slots available in the first floor are : ");
+        System.out.println(" General spots : ");
+        f1.slotsAvailable();
+        System.out.println( " Reserved for Handicapped : ");
+        f1.display_reserved_spots();
+    
+        System.out.println("The slots available in the second floor are : ");
+        System.out.println(" General spots : ");
+        f2.slotsAvailable();
+        System.out.println( " Reserved for Handicapped : ");
+        f2.display_reserved_spots();
+    
+        System.out.println("The slots available in the third floor are : ");
+        System.out.println(" General spots : ");
+        f3.slotsAvailable();
+        System.out.println( " Reserved for Handicapped : ");
+        f3.display_reserved_spots();
+    }
+    
     protected void freeSpots(int slotno, int floorno){
         if(floorno == 0){
             g.clearSpots(slotno);
