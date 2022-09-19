@@ -2,20 +2,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Floor3 implements Floor{
+public class Floor1 implements Floor{
 
-    /** This floor is for parking 2 Wheelers with spot count = 400
-     * First 30 spots are reserved for handicapped
+    /** This floor is to park all non-electric 4 wheelers
+     * Has 200 parking spots, out of which the first 20 are reserved for handicapped
      */
 
     List<ParkingSpot> spots = new ArrayList<>();
-    final int MAX_SPOTS = 400;
+    final int MAX_SPOTS = 200;
     boolean[] spots_available =new boolean[MAX_SPOTS];
 
     private void initialize_spots_available(){
         for(int i=0; i<MAX_SPOTS; ++i){
             spots_available[i] = true;
         }
+    }
+    public Floor1() {
+        initialize_spots_available();
     }
 
     @Override
@@ -51,16 +54,21 @@ public class Floor3 implements Floor{
 
     @Override
     public Date findDate(int slotno) {
-        return spots.get(slotno-1).getEntry();
+        return null;
     }
 
     @Override
     public void clearSpots(int slotno) {
-        spots_available[slotno - 1] = true;
+
     }
 
     @Override
     public void add_vehicle(Vehicle v,int slotno) {
+
+    }
+
+    @Override
+    public void vehicle_exit(Vehicle v, int slotno) {
 
     }
 }
