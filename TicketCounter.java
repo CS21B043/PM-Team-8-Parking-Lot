@@ -14,7 +14,6 @@ public class TicketCounter {
     Floor1 f1 = new Floor1();
     Floor2 f2 = new Floor2();
     Floor3 f3 = new Floor3();
-    int a;
     public TicketCounter() {
     }
     protected void display_parking_charges(){
@@ -23,38 +22,69 @@ public class TicketCounter {
         System.out.println("Rs-10 for all the remaining hours");
     }
 
+    protected int findFloor(Vehicle v){
+        int wheelno = v.getWheelCnt();
+        boolean is_electric = v.isElectric;
+        if( wheelno > 4){
+            return 0;
+        }
+        else if (wheelno == 4){
+            if(is_electric){
+                return 2;
+            }
+            return 1;
+        }
+        return 3;
+    }
     protected void availableSpots(Vehicle v){
-        int wheelno=v.getWheelCnt();
-        String n = v.getSpot_nature();
-        boolean b=v.isElectric();
-        if(wheelno>4){
+        int floor_no = findFloor(v);
+        boolean is_handicapped = v.isHandicapped();
+        boolean b = v.isElectric();
+        if(floor_no == 0){
 
-            if(Objects.equals(n, "Handicapped")){
+            if(is_handicapped){
                 g.display_reserved_spots();
             }
             g.slotsAvailable();
         }
-        else if (wheelno==4) {
-            if(b){
-                if(Objects.equals(n, "Handicapped")){
+        else if (floor_no == 2) {
+                if(is_handicapped){
                     f2.display_reserved_spots();
                 }
                 f2.slotsAvailable();
-            }
-            else{
-                if(Objects.equals(n, "Handicapped")){
+        }
+        else if (floor_no == 1){
+                if(is_handicapped){
                     f1.display_reserved_spots();
                 }
                 f1.slotsAvailable();
-            }
+
         }
         else{
-            if(Objects.equals(n, "Handicapped")){
+            if(is_handicapped){
                 f3.display_reserved_spots();
             }
             f3.slotsAvailable();
         }
+        Scanner in = new Scanner(System.in);
+        System.out.print("Choose one from any of these available spots: ");
+        int slot_no = in.nextInt();
+        add_vehicle_toSpot(v,slot_no,floor_no);
+    }
 
+    protected void add_vehicle_toSpot(Vehicle v, int slotno, int floorno){
+        if(floorno == 0){
+            g.add_vehicle(v,slotno);
+        }
+        else if (floorno == 1){
+            f1.add_vehicle(v,slotno);
+        }
+        else if (floorno == 2){
+            f2.add_vehicle(v,slotno);
+        }
+        else{
+            f3.add_vehicle(v,slotno);
+        }
     }
 
     protected void exit_vehicle(int slotno, int floorno){
@@ -134,9 +164,5 @@ public class TicketCounter {
             f3.clearSpots(slotno);
         }
     }
-
-
-
-
 
 }
