@@ -9,6 +9,6 @@ public interface Floor {
     Vehicle findVehicle(int slotno);
     Date findDate(int slotno);
     void clearSpots(int slotno);
-    void add_vehicle(Vehicle v,int slotno);
+    void add_vehicle(ParkingSpot p);
     void vehicle_exit(int slotno);
 }
