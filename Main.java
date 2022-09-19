@@ -3,6 +3,16 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
+    public static void menu(){
+        System.out.println("Menu:");
+        System.out.println("1)Select Ticket counter");
+        System.out.println("2)Display Parking Charges per hour");
+        System.out.println("3)Display free slots");
+        System.out.println("4)Exit vehicle");
+        System.out.println("5)Exit Program");
+        System.out.println("Choose an option from the Menu");
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n= 1;
@@ -19,19 +29,23 @@ public class Main {
                 System.out.print("Choose your TC: ");
                 int tc = in.nextInt();
 
-                System.out.println("\nEnter your vehicle's Wheel count, license number, color");
+                System.out.println("\nEnter your Name, Vehicle's Wheel count, license number,isElectric?, color, handicapped?,");
+                String name = in.next();
                 int wheel_count = in.nextInt();
                 String license_num = in.next();
                 boolean isElectric=in.nextBoolean();
                 String color = in.next();
-                String nature = in.next();
+                boolean is_handicapped = in.nextBoolean();
 
-                Vehicle v = new Vehicle(wheel_count,license_num,isElectric,color,nature);
+                Vehicle v = new Vehicle(name, wheel_count, license_num, isElectric, color, is_handicapped);
                 vehicles_arr.add(v);
+
                 /**
                  * available spots are displayed for a specific vehicle type
-                 * the he/she chooses one of those spots
+                 * then he/she chooses one of those spots
                  */
+
+                ticket_counter.availableSpots(v);
 
             }
             else if (n == 2){
@@ -54,13 +68,4 @@ public class Main {
         }
     }
 
-    public static void menu(){
-        System.out.println("Menu:");
-        System.out.println("1)Select Ticket counter");
-        System.out.println("2)Display Parking Charges per hour");
-        System.out.println("3)Display free slots");
-        System.out.println("4)Exit vehicle");
-        System.out.println("5)Exit Program");
-        System.out.println("Choose an option from the Menu");
-    }
 }
