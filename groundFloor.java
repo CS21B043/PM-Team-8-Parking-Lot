@@ -6,9 +6,8 @@ public class groundFloor implements Floor{
      * Has 100 parking spots and the first 10 are reserved for Handicapped
      */
 
-    List<ParkingSpot> spots = new ArrayList<>();
-
     final int MAX_SPOTS = 100;
+    List<ParkingSpot> spots = new ArrayList<>(MAX_SPOTS);
     boolean[] spots_available =new boolean[MAX_SPOTS];
 
     private void initialize_spots_available(){
@@ -17,35 +16,61 @@ public class groundFloor implements Floor{
         }
     }
 
+    private void initialize_array_list(){
+        for(int i=0; i<MAX_SPOTS; ++i){
+            spots.add(i, null);
+        }
+    }
+
     public groundFloor(){
         initialize_spots_available();
+        initialize_array_list();
     }
 
 
     @Override
     public boolean isFull() {
+        for(int i=0; i<MAX_SPOTS; ++i){
+            if(!spots_available[i]){
+                return true;
+            }
+        }
         return false;
     }
 
 
     @Override
     public void slotsAvailable() {
-
+        System.out.println("GENERAL PARKING SLOTS");
+        for(int i=10; i<MAX_SPOTS; ++i){
+            if(spots_available[i]){
+                System.out.print(i+1 + " ");
+            }
+        }
     }
 
     @Override
     public void display_entry_points() {
-
+        /**
+         * Prints 4 entry points names in the floor
+         */
     }
 
     @Override
     public void display_exit_points() {
-
+        /**
+         * Prints 4 exit points names in the floor
+         */
     }
 
     @Override
     public void display_reserved_spots() {
-
+        System.out.println("RESERVED FOR HANDICAPPED");
+        for(int i=0; i<10; ++i){
+            if(spots_available[i]){
+                System.out.print(i+1 + " ");
+            }
+        }
     }
 
     @Override
@@ -64,12 +89,19 @@ public class groundFloor implements Floor{
     }
 
     @Override
-    public void add_vehicle(Vehicle v,int slotno) {
-
+    public void add_vehicle(ParkingSpot p) {
+        int slotno = p.getSlotNo();
+        if(spots_available[slotno-1]){
+            spots_available[slotno-1] = false;
+            spots.set(slotno-1,p);
+        }
     }
 
     @Override
     public void vehicle_exit(int slotno) {
-
+        if(!spots_available[slotno-1]){
+            spots_available[slotno-1] = true;
+            spots.set(slotno-1,null);
+        }
     }
 }
