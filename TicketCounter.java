@@ -87,6 +87,69 @@ public class TicketCounter {
         }
     }
 
+    public void print_menu(String s, int i){
+        System.out.println("Enter "+i+" for using " + s);
+    }
+    protected void pay_at_cip(int amt) {
+        Scanner in = new Scanner(System.in);
+        String id;
+        String password;
+        System.out.println("Welcome to the Customer's Info Portal");
+        System.out.println("You can pay using NetBanking or UPI");
+        print_menu("UPI", 1);
+        print_menu("NetBanking", 2);
+        int t = in.nextInt();
+        assert (t == 1 || t == 2);
+        if (t == 1) {
+            System.out.println("Please enter your UPI ID");
+            id = in.next();
+            System.out.println("Please enter your 6 digit UPI pin");
+        } else {
+            System.out.println("Please enter your user id");
+            id = in.next();
+            System.out.println("Please enter your password");
+        }
+        password = in.next();
+        System.out.println("Your Payment of Rs. " + amt + " using account id " + id +
+                " was successful! Thank you for using the Customer's Info Portal");
+    }
+
+    protected void pay_using_aep(int amt){
+        System.out.println("Your Payment of Rs. " + amt + " using FASTAG was successful! Thank you for using the Automated Exit Panel");
+    }
+    protected void pay_to_attendant(int amt) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Please choose your payment method");
+        print_menu("Cash", 1);
+        print_menu("Card", 2);
+        int t = in.nextInt();
+        assert (t == 1 || t == 2);
+        if (t == 1) {
+            System.out.println(amt + " has been received through cash");
+        } else {
+            System.out.println("Enter Account number: " + in.nextInt());
+            System.out.println(amt + " has been credited");
+        }
+    }
+     protected void payment(int amt){
+        Scanner in = new Scanner(System.in);
+        System.out.println("You can pay at the Customer's Info Portal or using an Automated Exit Panel or to the Parking Attendant");
+        print_menu("Customer's Info Portal", 1);
+        print_menu("Automated Exit Panel", 2);
+        print_menu("Parking Attendant", 3);
+        int t = in.nextInt();
+        assert(t ==1 || t ==2 || t==3);
+        if(t==1){
+            pay_at_cip(amt);
+        }
+        else if(t==3){
+            pay_to_attendant(amt);
+        }
+        else{
+            pay_using_aep(amt);
+        }
+    }
+
     protected void exit_vehicle(int slotno, int floorno){
         /** int t = get.this.time, now subtract this with the parking slot's time and calculte money
          * and also free the slot, make the spots available array value in that pos as '1' &
@@ -132,23 +195,7 @@ public class TicketCounter {
         payment(amt);
         freeSpots(slotno, floorno);
     }
-
-    protected void payment(int amt){
-        Scanner in = new Scanner(System.in);
-        System.out.println("Please choose your payment method");
-        System.out.println("Enter 1 for Cash");
-        System.out.println("Enter 2 for Card");
-        int t = in.nextInt();
-        assert(t ==1 || t ==2);
-        if(t == 1){
-            System.out.println(amt + " has been received through cash");
-        }
-        else {
-            System.out.println("Enter Account number: " + in.nextInt());
-            System.out.println(amt + " has been credited");
-        }
-
-    }
+    
 
     protected void freeSpots(int slotno, int floorno){
         if(floorno == 0){
