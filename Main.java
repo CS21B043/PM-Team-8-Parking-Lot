@@ -10,13 +10,12 @@ public class Main {
         System.out.println("3)Display free slots");
         System.out.println("4)Exit vehicle");
         System.out.println("5)Exit Program");
-        System.out.println("Choose an option from the Menu");
+        System.out.println("Choose an option from the Menu: ");
     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int n= 1;
-        ArrayList<Vehicle> vehicles_arr = new ArrayList<>(400+200+160+100);
+        int n;
         TicketCounter ticket_counter = new TicketCounter();
         while(true){
             menu();
@@ -38,7 +37,6 @@ public class Main {
                 boolean is_handicapped = in.nextBoolean();
 
                 Vehicle v = new Vehicle(name, wheel_count, license_num, isElectric, color, is_handicapped);
-                vehicles_arr.add(v);
 
                 /**
                  * available spots are displayed for a specific vehicle type
@@ -55,9 +53,11 @@ public class Main {
                 ticket_counter.display_free_slots();
             }
             else if (n == 4){
+
                 /** Get slot no, and floor.no and show the price for parking, get the cash paid through
                  * cash or card and remove vehicle from the slot and make it free (change slots_occupied array to 1
                  */
+
                 System.out.println("Please enter the slot number and the floor number");
                 int slotno = in.nextInt();
                 int floorno = in.nextInt();
