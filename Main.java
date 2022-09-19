@@ -58,6 +58,10 @@ public class Main {
                 /** Get slot no, and floor.no and show the price for parking, get the cash paid through
                  * cash or card and remove vehicle from the slot and make it free (change slots_occupied array to 1
                  */
+                System.out.println("Please enter the slot number and the floor number");
+                int slotno = in.nextInt();
+                int floorno = in.nextInt();
+                ticket_counter.exit_vehicle(slotno, floorno);
             }
             else if(n == 5){
                 break;
