@@ -64,7 +64,7 @@ public class Floor3 implements Floor{
     }
 
     @Override
-    public void add_vehicle(Vehicle v,int slotno) {
+    public void add_vehicle(ParkingSpot p) {
 
     }
 
