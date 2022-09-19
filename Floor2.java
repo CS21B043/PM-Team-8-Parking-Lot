@@ -2,14 +2,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Floor1 implements Floor{
+public class Floor2 implements Floor{
 
-    /** This floor is to park all non-electric 4 wheelers
-     * Has 200 parking spots, out of which the first 20 are reserved for handicapped
+    /** This floor is for parking electric cars, it has 160 spots and
+     * 12 are reserved for handicapped, each spot has a separate charging point
+     *
      */
 
     List<ParkingSpot> spots = new ArrayList<>();
-    final int MAX_SPOTS = 200;
+    final int MAX_SPOTS = 160;
     boolean[] spots_available =new boolean[MAX_SPOTS];
 
     private void initialize_spots_available(){
@@ -17,7 +18,8 @@ public class Floor1 implements Floor{
             spots_available[i] = true;
         }
     }
-    public Floor1() {
+
+    public Floor2(){
         initialize_spots_available();
     }
 
@@ -63,7 +65,7 @@ public class Floor1 implements Floor{
     }
 
     @Override
-    public void add_vehicle(Vehicle v,int slotno) {
+    public void add_vehicle(Vehicle v, int slotno) {
 
     }
 
