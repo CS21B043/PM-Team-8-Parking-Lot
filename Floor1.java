@@ -68,7 +68,7 @@ public class Floor1 implements Floor{
     }
 
     @Override
-    public void vehicle_exit(Vehicle v, int slotno) {
+    public void vehicle_exit(int slotno) {
 
     }
 }
