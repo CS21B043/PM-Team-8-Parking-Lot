@@ -10,13 +10,14 @@ public class Floor3 implements Floor{
 
     List<ParkingSpot> spots = new ArrayList<>();
     final int MAX_SPOTS = 400;
-    int[] spots_available =new int[MAX_SPOTS];
+    boolean[] spots_available =new boolean[MAX_SPOTS];
 
     private void farr(){
         for(int i=0; i<MAX_SPOTS; ++i){
-            spots_available[i] = 1;
+            spots_available[i] = true;
         }
     }
+
     @Override
     public boolean isFull() {
         return false;
