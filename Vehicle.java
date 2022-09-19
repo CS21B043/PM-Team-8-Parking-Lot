@@ -1,16 +1,18 @@
 public class Vehicle {
-    int wheelCnt;
-    String licenseNumber;
-    boolean isElectric;
-    String color;
-    String spot_nature;
+    protected String name;
+    protected int wheelCnt;
+    protected String licenseNumber;
+    protected boolean isElectric;
+    protected String color;
+    protected boolean isHandicapped;
 
-    public Vehicle(int wheelCnt, String licenseNumber, boolean isElectric, String color, String spot_nature) {
+    public Vehicle(String name, int wheelCnt, String licenseNumber, boolean isElectric, String color, boolean isHandicapped) {
+        this.name = name;
         this.wheelCnt = wheelCnt;
         this.licenseNumber = licenseNumber;
         this.isElectric = isElectric;
         this.color = color;
-        this.spot_nature = spot_nature;
+        this.isHandicapped = isHandicapped;
     }
 
     public int getWheelCnt() {
@@ -45,11 +47,19 @@ public class Vehicle {
         this.color = color;
     }
 
-    public String getSpot_nature() {
-        return spot_nature;
+    public String getName() {
+        return name;
     }
 
-    public void setSpot_nature(String spot_nature) {
-        this.spot_nature = spot_nature;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isHandicapped() {
+        return isHandicapped;
+    }
+
+    public void setHandicapped(boolean handicapped) {
+        this.isHandicapped = handicapped;
     }
 }
