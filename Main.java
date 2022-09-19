@@ -52,7 +52,7 @@ public class Main {
                 ticket_counter.display_parking_charges();
             }
             else if (n == 3){
-
+                ticket_counter.display_free_slots();
             }
             else if (n == 4){
                 /** Get slot no, and floor.no and show the price for parking, get the cash paid through
