@@ -9,11 +9,11 @@ public class groundFloor implements Floor{
     List<ParkingSpot> spots = new ArrayList<>();
 
     final int MAX_SPOTS = 100;
-    int[] spots_available =new int[MAX_SPOTS];
+    boolean[] spots_available =new boolean[MAX_SPOTS];
 
-    private void farr(){
+    private void initialize_spots_available(){
         for(int i=0; i<MAX_SPOTS; ++i){
-            spots_available[i] = 1;
+            spots_available[i] = true;
         }
     }
 
@@ -56,6 +56,11 @@ public class groundFloor implements Floor{
 
     @Override
     public void clearSpots(int slotno) {
-        spots_available[slotno - 1] = 1;
+        spots_available[slotno - 1] = true;
+    }
+
+    @Override
+    public void add_vehicle(Vehicle v,int slotno) {
+
     }
 }
