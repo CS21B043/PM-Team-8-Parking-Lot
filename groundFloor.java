@@ -17,6 +17,10 @@ public class groundFloor implements Floor{
         }
     }
 
+    public groundFloor(){
+        initialize_spots_available();
+    }
+
 
     @Override
     public boolean isFull() {
@@ -61,6 +65,11 @@ public class groundFloor implements Floor{
 
     @Override
     public void add_vehicle(Vehicle v,int slotno) {
+
+    }
+
+    @Override
+    public void vehicle_exit(Vehicle v, int slotno) {
 
     }
 }
