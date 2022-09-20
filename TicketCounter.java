@@ -88,7 +88,27 @@ public class TicketCounter {
         }
     }
 
-    public void print_menu(String s, int i){
+    protected int calculate_amt(Date in){
+        int amt;
+        Date exit = new Date();
+        int hours = exit.getHours() - in.getHours()+1;
+        int day = exit.getDay() - in.getDay();
+
+        if(day<0)day=day+7;
+        day=day*24;
+        if((hours+day)==1){
+            amt=50;
+        }
+        else if((hours+day)==2 || (hours+day)==3){
+            amt=50+(hours+day-1)*30;
+        }
+        else{
+            amt=(50+(2)*30)+(hours+day-3)*30;
+        }
+        return amt;
+    }
+    
+     public void print_menu(String s, int i){
         System.out.println("Enter "+i+" for using " + s);
     }
     protected void pay_at_cip(int amt) {
@@ -149,27 +169,7 @@ public class TicketCounter {
             pay_using_aep(amt);
         }
     }
-
-    protected int calculate_amt(Date in){
-        int amt;
-        Date exit = new Date();
-        int hours = exit.getHours() - in.getHours();
-        int day = exit.getDay() - in.getDay();
-
-        if(day<0)day=day+7;
-        day=day*24;
-        if((hours+day)==1){
-            amt=(hours+day)*50;
-        }
-        else if((hours+day)==2 || (hours+day)==3){
-            amt=50+(hours+day-1)*30;
-        }
-        else{
-            amt=(50+(2)*30)+(hours+day-3)*30;
-        }
-        return amt;
-    }
-
+    
     protected void exit_vehicle(int slotno, int floorno){
         /** int t = get.this.time, now subtract this with the parking slot's time and calculate money
          * and also free the slot, make the spots available array value in that pos as '1' &
