@@ -30,12 +30,13 @@ public class groundFloor implements Floor{
 
     @Override
     public boolean isFull() {
+        int cnt = 0;
         for(int i=0; i<MAX_SPOTS; ++i){
             if(!spots_available[i]){
-                return true;
+                cnt += 1;
             }
         }
-        return false;
+        return cnt == MAX_SPOTS;
     }
 
 
