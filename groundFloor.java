@@ -55,6 +55,10 @@ public class groundFloor implements Floor{
         /**
          * Prints 4 entry points names in the floor
          */
+        System.out.println("1. Handicapped Entrance");
+        System.out.println("2. South Gate Entrance");
+        System.out.println("3. North Gate Entrance");
+        System.out.println("4. East Gate Entrance");
     }
 
     @Override
@@ -62,6 +66,10 @@ public class groundFloor implements Floor{
         /**
          * Prints 4 exit points names in the floor
          */
+        System.out.println("1. Handicapped Exit");
+        System.out.println("2. South Gate Exit");
+        System.out.println("3. North Gate Exit");
+        System.out.println("4. East Gate Exit");
     }
 
     @Override
