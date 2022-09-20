@@ -84,7 +84,7 @@ public class groundFloor implements Floor{
 
     @Override
     public Vehicle findVehicle(int slotno) {
-        return null;
+        return spots.get(slotno - 1).getVehicle();
     }
 
     @Override
