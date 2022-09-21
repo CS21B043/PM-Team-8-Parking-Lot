@@ -8,8 +8,8 @@ public class Floor1 implements Floor{
      * Has 200 parking spots, out of which the first 20 are reserved for handicapped
      */
 
-    List<ParkingSpot> spots = new ArrayList<>();
     final int MAX_SPOTS = 200;
+    List<ParkingSpot> spots = new ArrayList<>(MAX_SPOTS);
     boolean[] spots_available =new boolean[MAX_SPOTS];
 
     private void initialize_spots_available(){
