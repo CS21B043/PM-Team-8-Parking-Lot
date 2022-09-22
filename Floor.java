@@ -8,17 +8,17 @@ public interface Floor {
     boolean isFull();
 
     /**
-     * Shows general parking slot numbers available in the floor
+     * Shows general slot numbers available in the floor
      */
     void slotsAvailable();
 
     /**
-     * Shows the name of different entry points in a floor
+     * Shows the name of different entry points in the floor
      */
     void display_entry_points();
 
     /**
-     * Shows the name of different exit points in a floor
+     * Shows the name of different exit points in the floor
      */
     void display_exit_points();
 
@@ -29,20 +29,20 @@ public interface Floor {
 
     /**
      * Given a slot no, it checks for the vehicle in that slot number in the respective floor
-     * @param slotno 
-     * @return Vehicle
+     * @param slotno
+     * @return
      */
     Vehicle findVehicle(int slotno);
 
     /**
      * Given the slot no, it will return the entry date of the vehicle in that slot no in the respective floor
-     * @param slotno 
+     * @param slotno
      * @return Entry Date
      */
     Date findDate(int slotno);
 
     /**
-     * Clears the vehicle in that slot no, set the array names slots_available value as false 
+     * Clears the vehicle in that slot no, set the array names slots_available value as false
      * @param slotno
      */
     void clearSpots(int slotno);
@@ -54,9 +54,15 @@ public interface Floor {
     void add_vehicle(ParkingSpot p);
 
     /**
-     * This method will find the vehicle in the slot no, then sets the slot no's value as false in the spots_available 
+     * This method will find the vehicle in the slot no, then sets the slot no's value as false in the spots_available
      * array as false
      * @param slotno
      */
     void vehicle_exit(int slotno);
+
+    /**
+     * displays the details of all vehicles parked in the floor
+     */
+
+    void display_vehicles_details();
 }
