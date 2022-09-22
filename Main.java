@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void menu(){
-        System.out.println("Menu:");
+        System.out.println("\nMenu:");
         System.out.println("1)Select Ticket counter");
         System.out.println("2)Display Parking Charges per hour");
         System.out.println("3)Display free slots");
         System.out.println("4)Exit vehicle");
         System.out.println("5)Exit Program");
-        System.out.println("Choose an option from the Menu: ");
+        System.out.print("Choose an option from the Menu: ");
     }
 
     public static void main(String[] args) {
@@ -28,12 +28,22 @@ public class Main {
                 System.out.print("Choose your TC: ");
                 int tc = in.nextInt();
 
-                System.out.println("\nEnter your Name, Vehicle's Wheel count, license number,isElectric?, color, handicapped?,");
-                String name = in.next();
+                System.out.print("\nEnter your Name: ");
+                in.nextLine();
+                String name = in.nextLine();
+                System.out.print("Enter Vehicle's Wheel count: ");
                 int wheel_count = in.nextInt();
+                System.out.print("Enter license number: ");
                 String license_num = in.next();
-                boolean isElectric=in.nextBoolean();
-                String color = in.next();
+                boolean isElectric = false;
+                if(wheel_count == 4) {
+                    System.out.print("Is it an electric vehicle? (true/false): ");
+                    isElectric = in.nextBoolean();
+                }
+                System.out.print("Enter vehicle's color: ");
+                in.nextLine();
+                String color = in.nextLine();
+                System.out.print("3Are you handicapped?(true/false): ");
                 boolean is_handicapped = in.nextBoolean();
 
                 Vehicle v = new Vehicle(name, wheel_count, license_num, isElectric, color, is_handicapped);
