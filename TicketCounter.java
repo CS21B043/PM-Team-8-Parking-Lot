@@ -249,4 +249,15 @@ public class TicketCounter {
         }
     }
 
+    protected void display_vehicles(){
+        System.out.println("GROUND FLOOR:");
+        g.display_vehicles_details();
+        System.out.println("\nFIRST FLOOR:");
+        f1.display_vehicles_details();
+        System.out.println("\nSECOND FLOOR:");
+        f2.display_vehicles_details();
+        System.out.println("\nTHIRD FLOOR:");
+        f3.display_vehicles_details();
+    }
+
 }
