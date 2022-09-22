@@ -15,7 +15,7 @@ public class TicketCounter {
     public TicketCounter() {
     }
     protected void display_parking_charges(){
-        System.out.println("Rs-50 for the first hour");
+        System.out.println("\nRs-50 for the first hour");
         System.out.println("Rs-30 for the second and third hour");
         System.out.println("Rs-10 for all the remaining hours");
     }
@@ -107,8 +107,8 @@ public class TicketCounter {
         }
         return amt;
     }
-    
-     public void print_menu(String s, int i){
+
+    public void print_menu(String s, int i){
         System.out.println("Enter "+i+" for using " + s);
     }
     protected void pay_at_cip(int amt) {
@@ -125,12 +125,12 @@ public class TicketCounter {
             id = in.next();
             System.out.println("Please enter your 6 digit UPI pin");
         } else {
-            System.out.println("Please enter your user id");
+            System.out.print("Enter your user id: ");
             id = in.next();
-            System.out.println("Please enter your password");
+            System.out.print("Enter your password: ");
         }
         password = in.next();
-        System.out.println("Your Payment of Rs. " + amt + " using account id " + id +
+        System.out.println("Your Payment of Rs." + amt + " using account id " + id +
                 " was successful! Thank you for using the Customer's Info Portal");
     }
 
@@ -147,8 +147,9 @@ public class TicketCounter {
         if (t == 1) {
             System.out.println(amt + " has been received through cash");
         } else {
-            System.out.println("Enter Account number: " + in.nextInt());
-            System.out.println(amt + " has been credited");
+            System.out.println("Enter Account number: ");
+            int ac = in.nextInt();
+            System.out.println(amt + " has been credited to " + ac);
         }
     }
     protected void payment(int amt){
@@ -169,7 +170,7 @@ public class TicketCounter {
             pay_using_aep(amt);
         }
     }
-    
+
     protected void exit_vehicle(int slotno, int floorno){
         /** int t = get.this.time, now subtract this with the parking slot's time and calculate money
          * and also free the slot, make the spots available array value in that pos as '1' &
@@ -215,29 +216,22 @@ public class TicketCounter {
     }
 
     public void display_free_slots(){
-        System.out.println("The slots available in the ground floor are : ");
-        System.out.println(" General spots : ");
+        System.out.println("\n\nThe slots available in the ground floor are : ");
         g.slotsAvailable();
-        System.out.println( " Reserved for Handicapped : ");
         g.display_reserved_spots();
 
-        System.out.println("The slots available in the first floor are : ");
-        System.out.println(" General spots : ");
+        System.out.println("\n\nThe slots available in the first floor are : ");
         f1.slotsAvailable();
-        System.out.println( " Reserved for Handicapped : ");
         f1.display_reserved_spots();
 
-        System.out.println("The slots available in the second floor are : ");
-        System.out.println(" General spots : ");
+        System.out.println("\n\nThe slots available in the second floor are : ");
         f2.slotsAvailable();
-        System.out.println( " Reserved for Handicapped : ");
         f2.display_reserved_spots();
 
-        System.out.println("The slots available in the third floor are : ");
-        System.out.println(" General spots : ");
+        System.out.println("\n\nThe slots available in the third floor are : ");
         f3.slotsAvailable();
-        System.out.println( " Reserved for Handicapped : ");
         f3.display_reserved_spots();
+        System.out.println();
     }
 
     protected void freeSpots(int slotno, int floorno){
