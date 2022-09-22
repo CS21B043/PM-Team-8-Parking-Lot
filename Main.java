@@ -43,7 +43,7 @@ public class Main {
                 System.out.print("Enter vehicle's color: ");
                 in.nextLine();
                 String color = in.nextLine();
-                System.out.print("3Are you handicapped?(true/false): ");
+                System.out.print("Are you handicapped?(true/false): ");
                 boolean is_handicapped = in.nextBoolean();
 
                 Vehicle v = new Vehicle(name, wheel_count, license_num, isElectric, color, is_handicapped);
