@@ -42,10 +42,21 @@ public class groundFloor implements Floor{
 
     @Override
     public void slotsAvailable() {
+        /**
+         * This will print all the general slots available to park in this floor,
+         * To make the spot numbers in a readable format, we are printing only ten spots per row
+         */
+
         System.out.println("GENERAL PARKING SLOTS");
+        int cnt = 0;
         for(int i=10; i<MAX_SPOTS; ++i){
             if(spots_available[i]){
+                ++cnt;
                 System.out.print(i+1 + " ");
+            }
+            if(cnt > 20){
+                cnt = 0;
+                System.out.println();
             }
         }
     }
@@ -74,7 +85,7 @@ public class groundFloor implements Floor{
 
     @Override
     public void display_reserved_spots() {
-        System.out.println("RESERVED FOR HANDICAPPED");
+        System.out.println("\nRESERVED FOR HANDICAPPED");
         for(int i=0; i<10; ++i){
             if(spots_available[i]){
                 System.out.print(i+1 + " ");
