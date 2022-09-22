@@ -8,8 +8,9 @@ public class Main {
         System.out.println("1)Select Ticket counter");
         System.out.println("2)Display Parking Charges per hour");
         System.out.println("3)Display free slots");
-        System.out.println("4)Exit vehicle");
-        System.out.println("5)Exit Program");
+        System.out.println("4)Display parked vehicles details");
+        System.out.println("5)Exit vehicle");
+        System.out.println("6)Exit Program");
         System.out.print("Choose an option from the Menu: ");
     }
 
@@ -63,6 +64,9 @@ public class Main {
                 ticket_counter.display_free_slots();
             }
             else if (n == 4){
+                ticket_counter.display_vehicles();
+            }
+            else if (n == 5){
 
                 /** Get slot no, and floor.no and show the price for parking, get the cash paid through
                  * cash or card and remove vehicle from the slot and make it free (change slots_occupied array to 1
@@ -73,7 +77,7 @@ public class Main {
                 int floorno = in.nextInt();
                 ticket_counter.exit_vehicle(slotno, floorno);
             }
-            else if(n == 5){
+            else if(n == 6){
                 break;
             }
             else{
