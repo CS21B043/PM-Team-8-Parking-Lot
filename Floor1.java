@@ -42,9 +42,15 @@ public class Floor1 implements Floor{
     @Override
     public void slotsAvailable() {
         System.out.println("GENERAL PARKING SLOTS");
+        int cnt = 0;
         for(int i=20; i<MAX_SPOTS; ++i){
             if(spots_available[i]){
+                ++cnt;
                 System.out.print(i+1 + " ");
+            }
+            if(cnt > 20) {
+                cnt = 0;
+                System.out.println();
             }
         }
     }
@@ -68,7 +74,7 @@ public class Floor1 implements Floor{
 
     @Override
     public void display_reserved_spots() {
-        System.out.println("RESERVED FOR HANDICAPPED");
+        System.out.println("\nRESERVED FOR HANDICAPPED");
         for(int i=0; i<20; ++i){
             if(spots_available[i]){
                 System.out.print(i+1 + " ");
