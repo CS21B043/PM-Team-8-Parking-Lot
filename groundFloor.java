@@ -124,4 +124,19 @@ public class groundFloor implements Floor{
             spots.set(slotno-1,null);
         }
     }
+
+    @Override
+    public void display_vehicles_details() {
+        boolean isempty = false;
+        for(int i=0; i<MAX_SPOTS; ++i){
+            if(!spots_available[i]){
+                isempty = true;
+                Vehicle v = spots.get(i).getVehicle();
+                System.out.println(v.getName() + " - " + v.getLicenseNumber() + " - " + v.getColor() + " - " + spots.get(i).getEntry());
+            }
+        }
+        if(!isempty){
+            System.out.println("No vehicles parked yet!");
+        }
+    }
 }
