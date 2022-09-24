@@ -2,11 +2,13 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class ParkingSpot {
+    //This class helps in connecting a vehicle to its corresponding slot number.
     int slotNo;
     int floorNo;
     Vehicle vehicle;
     Date entry = new Date();
 
+    //Constructor which initializes all variables of the class.
     public ParkingSpot(int slotNo, int floorNo, Vehicle vehicle, Date entry) {
         this.slotNo = slotNo;
         this.floorNo = floorNo;
