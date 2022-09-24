@@ -7,27 +7,30 @@ public class groundFloor implements Floor{
      */
 
     final int MAX_SPOTS = 100;
+    // Creating a list of objects of class Parking Spot, which contains details of each spot
     List<ParkingSpot> spots = new ArrayList<>(MAX_SPOTS);
+    // Creating a boolean array to check if a given spot is vacant or not.
     boolean[] spots_available =new boolean[MAX_SPOTS];
 
+    //Initially, marking all spots in the floor as available.
     private void initialize_spots_available(){
         for(int i=0; i<MAX_SPOTS; ++i){
             spots_available[i] = true;
         }
     }
-
+    //Initializing the array list.
     private void initialize_array_list(){
         for(int i=0; i<MAX_SPOTS; ++i){
             spots.add(i, null);
         }
     }
-
+    //Constructor initializes both the array and the list.
     public groundFloor(){
         initialize_spots_available();
         initialize_array_list();
     }
-
-
+    
+    
     @Override
     public boolean isFull() {
         int cnt = 0;
