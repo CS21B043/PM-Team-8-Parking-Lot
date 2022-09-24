@@ -3,7 +3,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
-    /* Creating a menu using which the user can enter a vehicle, know the parking fee, know the available slots, pay and exit his vehicle etc...
+    // Creating a menu using which the user can enter a vehicle, know the parking fee, know the available slots, pay and exit his vehicle etc...
     public static void menu(){
         System.out.println("\nMenu:");
         System.out.println("1)Select Ticket counter");
@@ -86,7 +86,7 @@ public class Main {
                 int floorno = in.nextInt();
                 ticket_counter.exit_vehicle(slotno, floorno);
             }
-            //If, n=6, the program terminates.
+            //If n=6, the program terminates.
             else if(n == 6){
                 break;
             }
