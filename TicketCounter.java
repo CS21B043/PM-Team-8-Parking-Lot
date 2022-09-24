@@ -36,6 +36,7 @@ public class TicketCounter {
     }
     protected void availableSpots(Vehicle v){
         int floor_no = findFloor(v);
+        System.out.println("\nFLOOR NO: " + floor_no);
         boolean is_handicapped = v.isHandicapped();
         if(floor_no == 0){
 
