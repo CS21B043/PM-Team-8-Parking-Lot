@@ -7,19 +7,22 @@ public class TicketCounter {
      * spots are available for that vehicle type and parks the vehicle (also notes the time of entry)
      * and calculates the price when vehicles exit
      */
-
+    //Creating objects of every floor
     groundFloor g = new groundFloor();
     Floor1 f1 = new Floor1();
     Floor2 f2 = new Floor2();
     Floor3 f3 = new Floor3();
     public TicketCounter() {
     }
+    
+    //Prints the parking charges per hour.
     protected void display_parking_charges(){
         System.out.println("\nRs-50 for the first hour");
         System.out.println("Rs-30 for the second and third hour");
         System.out.println("Rs-10 for all the remaining hours");
     }
-
+    
+    //Given a vehicle v, this method finds which floor it must be parked on.
     protected int findFloor(Vehicle v){
         int wheelno = v.getWheelCnt();
         boolean is_electric = v.isElectric;
@@ -34,6 +37,8 @@ public class TicketCounter {
         }
         return 3;
     }
+    
+    //Given a vehicle v, this methods prints all the possible spots on which it can be parked.
     protected void availableSpots(Vehicle v){
         int floor_no = findFloor(v);
         System.out.println("\nFLOOR NO: " + floor_no);
@@ -69,7 +74,8 @@ public class TicketCounter {
         int slot_no = in.nextInt();
         add_vehicle_toSpot(v,slot_no,floor_no);
     }
-
+    
+    //It links a vehicle to its corresponding parking spot.
     protected void add_vehicle_toSpot(Vehicle v, int slotno, int floorno){
         Date in = new Date();
         ParkingSpot p = new ParkingSpot(slotno,floorno,v,in);
@@ -89,6 +95,7 @@ public class TicketCounter {
         }
     }
 
+    //This method helps in calculating the amount a user has to pay when they leave, according to the parking charges mentioned earlier.
     protected int calculate_amt(Date in){
         int amt;
         Date exit = new Date();
@@ -108,10 +115,13 @@ public class TicketCounter {
         }
         return amt;
     }
-
+    
+    //This method helps in making the code for payment methods more readable.
     public void print_menu(String s, int i){
         System.out.println("Enter "+i+" for using " + s);
     }
+    
+    //This method helps the user in navigating the Customer's Info Portal, where they can pay online, either using UPI or NetBanking.
     protected void pay_at_cip(int amt) {
         Scanner in = new Scanner(System.in);
         String id,password;
@@ -134,10 +144,13 @@ public class TicketCounter {
         System.out.println("Your Payment of Rs." + amt + " using account id " + id +
                 " was successful! Thank you for using the Customer's Info Portal");
     }
-
+    
+    //This method helps the user to pay automatically, using FASTAG.
     protected void pay_using_aep(int amt){
         System.out.println("Your Payment of Rs. " + amt + " using FASTAG was successful! Thank you for using the Automated Exit Panel");
     }
+    
+    //This method helps the user to pay at the ticket counter to a parking attendant, either in Cash or Card.
     protected void pay_to_attendant(int amt) {
         Scanner in = new Scanner(System.in);
         System.out.println("Please choose your payment method");
@@ -153,6 +166,8 @@ public class TicketCounter {
             System.out.println(amt + " has been credited to " + ac);
         }
     }
+    
+    //This is the MAIN payment method, where the user can choose any one of the 3 payment methods mentioned above.
     protected void payment(int amt){
         Scanner in = new Scanner(System.in);
         System.out.println("You can pay at the Customer's Info Portal or using an Automated Exit Panel or to the Parking Attendant");
@@ -171,7 +186,7 @@ public class TicketCounter {
             pay_using_aep(amt);
         }
     }
-
+    
     protected void exit_vehicle(int slotno, int floorno){
         /** int t = get.this.time, now subtract this with the parking slot's time and calculate money
          * and also free the slot, make the spots available array value in that pos as '1' &
@@ -200,7 +215,8 @@ public class TicketCounter {
         freeSpots(slotno, floorno);
         remove_vehicle(slotno, floorno);
     }
-
+    
+    //This method helps in freeing up the slot of a vehicle when it leaves.
     protected void remove_vehicle(int slotno, int floorno){
         if(floorno == 0){
             g.vehicle_exit(slotno);
@@ -215,7 +231,8 @@ public class TicketCounter {
             f3.vehicle_exit(slotno);
         }
     }
-
+    
+    //Prints all available slots in the entire building.
     public void display_free_slots(){
         System.out.println("\n\nThe slots available in the ground floor are : ");
         g.slotsAvailable();
@@ -234,7 +251,8 @@ public class TicketCounter {
         f3.display_reserved_spots();
         System.out.println();
     }
-
+    
+    //This method helps in clearing a slot and making it available to use again. 
     protected void freeSpots(int slotno, int floorno){
         if(floorno == 0){
             g.clearSpots(slotno);
@@ -249,7 +267,8 @@ public class TicketCounter {
             f3.clearSpots(slotno);
         }
     }
-
+    
+    //Displays all the vehicles in the building floor by floor.
     protected void display_vehicles(){
         System.out.println("GROUND FLOOR:");
         g.display_vehicles_details();
