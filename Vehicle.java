@@ -1,11 +1,13 @@
 public class Vehicle {
+    //The vehicle class is essentially a struct which has variables to store necessary details of every vehicle
     protected String name;
     protected int wheelCnt;
     protected String licenseNumber;
     protected boolean isElectric;
     protected String color;
     protected boolean isHandicapped;
-
+    
+    //Constructor which initializes all the variables of the Vehicle class.
     public Vehicle(String name, int wheelCnt, String licenseNumber, boolean isElectric, String color, boolean isHandicapped) {
         this.name = name;
         this.wheelCnt = wheelCnt;
