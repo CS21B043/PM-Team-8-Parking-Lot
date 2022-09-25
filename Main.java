@@ -78,7 +78,7 @@ public class Main {
             else if (n == 5){
 
                 /** Get slot no, and floor.no and show the price for parking, get the cash paid through
-                 * cash or card and remove vehicle from the slot and make it free (change slots_occupied array to 1
+                 * cash or card and remove vehicle from the slot and make it free (change slots_occupied array to false)
                  */
 
                 System.out.println("Please enter the slot number and the floor number");
